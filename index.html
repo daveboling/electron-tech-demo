@@ -2,11 +2,71 @@
 <html>
   <head>
     <title>Hello World!</title>
+i   <link href='https://fonts.googleapis.com/css?family=Titillium+Web' rel='stylesheet' type='text/css'>
+    <script>
+	window.$ = window.jQuery = require('jquery');
+	window.moment = require('moment');
+    </script>
+    
   </head>
   <body>
-    <h1>Hello World!</h1>
-    We are using node <script>document.write(process.versions.node)</script>,
-    Chrome <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+    <style>
+	
+	html {
+	   position: relative; 
+	   min-height: 100%; 
+	}
+
+        body {
+          background-color: black; 
+        }
+        .clock {
+	  font-family: 'Titillium Web';
+	  text-align: center;
+	  position: absolute;
+	  top:0; bottom:0; left:0; right:0;
+	  height: 200px;
+	  width: 100%;
+ 	  color: white;
+          font-size: 8rem;
+	  opacity: 0.5;
+	  margin: auto;
+	  display: none;
+	  transition: 3s ease-in;
+        }
+	
+	span {
+	  width: 50px;	
+	}
+    </style>
+    <div class='clock'>
+	<span class='time'></span>
+    </div>
+    <script>
+	'use strict';
+	$(document).ready(function() {
+	  let $clock = $('.clock');
+	  let $time = $('.time');
+
+	  setInterval(function() {
+	    $time.text(moment().format('h:mm:ss A'));	    
+	  }, 1000);
+
+	  setInterval(function() {
+	    $clock.css({color: randomRgb()}, 2500);
+	  }, 2000);
+	  
+
+	  $clock.fadeIn(4000);
+
+
+	  function randomRgb() {
+	    return 'rgb(' + (Math.floor(Math.random() * 256)) + ', '
+	  	      + (Math.floor(Math.random() * 256)) + ', '
+	    	      + (Math.floor(Math.random() * 256)) + ')';
+	  } 
+	  
+	});
+    </script>
   </body>
 </html>
